@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useRef } from "react";
 import { Movies } from "../../utils/getRandomMovies";
 import { CarouselItem } from "./CarouselItem";
@@ -34,11 +35,17 @@ const Carousel = ({ movies }: { movies: Movies[] }) => {
         >
           {movies.map((movie) => {
             return (
-              <CarouselItem
+              <Link
+                href={`/movie/${movie.imdbID}`}
                 key={movie.imdbID}
-                title={movie.Title}
-                poster={movie.Poster}
-              />
+                className="relative basis-full flex-grow md:basis-1/2 lg:basis-1/3 xl:basis-1/4 flex-shrink-0 flex justify-center max-h-[600px]"
+              >
+                <CarouselItem
+                  key={movie.imdbID}
+                  title={movie.Title}
+                  poster={movie.Poster}
+                />
+              </Link>
             );
           })}
         </div>

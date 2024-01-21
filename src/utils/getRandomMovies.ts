@@ -9,8 +9,7 @@ export interface Movies {
 }
 
 export const fetchRandomMovies = async (): Promise<Movies[]> => {
-  const randomSearchTerm = generate({ min: 5, max: 10 });
-
+  const randomSearchTerm = generate({ min: 2, max: 4 });
   const moviePromise = randomSearchTerm.map(async (term) => {
     try {
       const response = await fetch(
