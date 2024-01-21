@@ -75,13 +75,14 @@ const Carousel = ({ movies }: { movies: Movies[] }) => {
           );
         })}
       </div>
-      <div className="flex justify-center gap-14">
+      <nav className="flex justify-center gap-14">
         <button
           onClick={handleLeftButtonClick}
           disabled={isAtStart}
           className={`${
             isAtStart ? "pointer-events-none opacity-50" : ""
           } focus:outline-none`}
+          aria-label="Scroll left"
         >
           <p className={sharedButtonIconStyling}>&lt;</p>
         </button>
@@ -92,10 +93,11 @@ const Carousel = ({ movies }: { movies: Movies[] }) => {
           className={`${
             isAtEnd ? "pointer-events-none opacity-50" : ""
           } focus:outline-none`}
+          aria-label="Scroll right"
         >
           <p className={sharedButtonIconStyling}>&gt;</p>
         </button>
-      </div>
+      </nav>
     </>
   );
 };

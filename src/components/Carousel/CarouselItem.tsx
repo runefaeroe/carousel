@@ -8,7 +8,10 @@ export const CarouselItem = ({
   poster: string;
 }) => {
   return (
-    <div className="relative group cursor-pointer w-full h-full object-cover">
+    <div
+      role="group"
+      className="relative group cursor-pointer w-full h-full object-cover"
+    >
       <img
         src={poster}
         alt={title}
