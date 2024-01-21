@@ -64,7 +64,7 @@ const Carousel = ({ movies }: { movies: Movies[] }) => {
             <Link
               href={`/movie/${movie.imdbID}`}
               key={movie.imdbID}
-              className="relative basis-full flex-grow md:basis-1/2 lg:basis-1/3 xl:basis-1/4 flex-shrink-0 flex justify-center max-h-[600px]"
+              className="relative basis-full flex-grow md:basis-1/2 lg:basis-1/3 xl:basis-1/4 flex-shrink-0 flex justify-center  max-h-[400px] md:max-h-[600px]"
             >
               <CarouselItem
                 key={movie.imdbID}
