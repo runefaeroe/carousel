@@ -4,7 +4,7 @@ import { Movies } from "../../utils/getRandomMovies";
 import { CarouselItem } from "./CarouselItem";
 
 const sharedButtonIconStyling =
-  "text-5xl bg-white bg-opacity-40 shadow-md rounded-lg text-black w-14 h-14 cursor-pointer";
+  "text-5xl bg-[#6704FF] shadow-md rounded-lg text-[#FAFAFA] w-14 h-14 cursor-pointer";
 
 const Carousel = ({ movies }: { movies: Movies[] }) => {
   const carouselRef = useRef<HTMLDivElement | null>(null);
@@ -27,9 +27,9 @@ const Carousel = ({ movies }: { movies: Movies[] }) => {
 
   return (
     <div>
-      <div className="p-6 bg-blue-500">
+      <div className="m-8">
         <div
-          className="flex overflow-x-hidden scroll-smooth no-scrollbar max-w-screen-2xl mx-auto mb-8 gap-4"
+          className="flex overflow-y-hidden overflow-x-auto scroll-smooth no-scrollbar  mx-auto mb-8 gap-8 no-scrollbar"
           ref={carouselRef}
         >
           {movies.map((movie) => {
