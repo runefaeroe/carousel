@@ -1,5 +1,5 @@
+import { fetchRandomMovies } from "../src/utils/getRandomMovies";
 import Carousel from "./Carousel";
-import { fetchRandomMovies } from "./src/utils/getRandomMovies";
 
 export default async function Home() {
   const movies = await fetchRandomMovies();

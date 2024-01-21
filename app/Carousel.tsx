@@ -1,5 +1,5 @@
 "use client";
-import { Movies } from "./src/utils/getRandomMovies";
+import { Movies } from "../src/utils/getRandomMovies";
 
 const Carousel = ({ movies }: { movies: Movies[] }) => {
   return (
