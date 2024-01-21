@@ -9,7 +9,7 @@ export interface Movies {
 }
 
 export const fetchRandomMovies = async (): Promise<Movies[]> => {
-  const randomSearchTerm = generate({ min: 10, max: 10 });
+  const randomSearchTerm = generate({ min: 5, max: 7 });
 
   const moviePromise = randomSearchTerm.map(async (term) => {
     try {
@@ -22,9 +22,10 @@ export const fetchRandomMovies = async (): Promise<Movies[]> => {
       console.error(error);
     }
   });
-  const movies: Movies[] = (await Promise.all(moviePromise)).flatMap(
-    (movie) => movie,
-  );
+  const movies: Movies[] = (await Promise.all(moviePromise))
+    .flatMap((movie) => movie)
+    .filter((movie) => movie?.Poster !== "N/A" && !!movie)
+    .slice(0, 30);
 
   return movies;
 };
