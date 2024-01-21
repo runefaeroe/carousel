@@ -66,11 +66,7 @@ const Carousel = ({ movies }: { movies: Movies[] }) => {
               key={movie.imdbID}
               className="relative basis-full flex-grow md:basis-1/2 lg:basis-1/3 xl:basis-1/4 flex-shrink-0 flex justify-center  max-h-[400px] md:max-h-[600px]"
             >
-              <CarouselItem
-                key={movie.imdbID}
-                title={movie.Title}
-                poster={movie.Poster}
-              />
+              <CarouselItem title={movie.Title} poster={movie.Poster} />
             </Link>
           );
         })}
@@ -81,10 +77,10 @@ const Carousel = ({ movies }: { movies: Movies[] }) => {
           disabled={isAtStart}
           className={`${
             isAtStart ? "pointer-events-none opacity-50" : ""
-          } focus:outline-none`}
+          } focus:outline-none ${sharedButtonIconStyling}`}
           aria-label="Scroll left"
         >
-          <p className={sharedButtonIconStyling}>&lt;</p>
+          &lt;
         </button>
 
         <button
@@ -92,10 +88,10 @@ const Carousel = ({ movies }: { movies: Movies[] }) => {
           disabled={isAtEnd}
           className={`${
             isAtEnd ? "pointer-events-none opacity-50" : ""
-          } focus:outline-none`}
+          } focus:outline-none ${sharedButtonIconStyling}`}
           aria-label="Scroll right"
         >
-          <p className={sharedButtonIconStyling}>&gt;</p>
+          &gt;
         </button>
       </nav>
     </>

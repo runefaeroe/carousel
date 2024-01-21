@@ -1,3 +1,4 @@
+import NotFound from "@/app/not-found";
 import AddFavoriteMovie from "@/src/components/AddFavoriteMovie";
 import Link from "next/link";
 
@@ -7,13 +8,8 @@ export default async function Page({ params }: { params: { id: string } }) {
       `${process.env.OMDB_BASE_URL}/?i=${params.id}&apikey=${process.env.API_KEY}`,
     );
 
-    if (!response.ok) {
-      throw new Error(
-        `Failed to fetch movie data: ${response.status} ${response.statusText}`,
-      );
-    }
-
     const movie = await response.json();
+
     const genre = movie.Genre.split(", ");
 
     return (
@@ -30,13 +26,15 @@ export default async function Page({ params }: { params: { id: string } }) {
           <div className="flex  gap-4 mt-4">
             <p className="text-lg font-bold">{movie.Year}</p>
             <p className="text-lg font-bold">{movie.Runtime}</p>|
-            {genre.map((genre: string) => {
-              return (
-                <p className="self-start text-md font-medium border-2 rounded-full px-2">
-                  {genre}
-                </p>
-              );
-            })}
+            <div className="flex flex-wrap gap-2">
+              {genre.map((genre: string) => {
+                return (
+                  <p className="self-start text-md font-medium border-2 rounded-full px-2">
+                    {genre}
+                  </p>
+                );
+              })}
+            </div>
           </div>
           <p className="mt-4">
             &#9733;{movie.imdbRating}/10 - {movie.imdbVotes} votes
@@ -49,11 +47,6 @@ export default async function Page({ params }: { params: { id: string } }) {
       </div>
     );
   } catch (error) {
-    console.error(error);
-    return (
-      <div className="text-center p-10">
-        Failed to fetch movie data. Please try again later.
-      </div>
-    );
+    return NotFound();
   }
 }
