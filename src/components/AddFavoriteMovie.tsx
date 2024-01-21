@@ -1,39 +1,31 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const AddFavoriteMovie = ({ imdbID }: { imdbID: string }) => {
-  const [isMovieInFavorites, setIsMovieInFavorites] = useState(false);
+  const storedFavoriteMovies = localStorage.getItem("favoriteMovies");
+  const initialFavoriteMovies: string[] = storedFavoriteMovies
+    ? JSON.parse(storedFavoriteMovies)
+    : [];
+  const [favoriteMovies, setFavoriteMovies] = useState(initialFavoriteMovies);
+
+  const isMovieInFavorites = favoriteMovies.includes(imdbID);
 
   const toggleMovieFavoriteStatus = () => {
-    const storedFavoriteMovies = localStorage.getItem("favoriteMovies");
-    const favoriteMovies: string[] = storedFavoriteMovies
-      ? JSON.parse(storedFavoriteMovies)
-      : [];
+    let updatedFavoriteMovies;
 
-    if (!favoriteMovies.includes(imdbID)) {
-      favoriteMovies.push(imdbID);
-      localStorage.setItem("favoriteMovies", JSON.stringify(favoriteMovies));
-      setIsMovieInFavorites(true);
+    if (isMovieInFavorites) {
+      updatedFavoriteMovies = favoriteMovies.filter((id) => id !== imdbID);
     } else {
-      const updatedFavoriteMovies = favoriteMovies.filter(
-        (id) => id !== imdbID,
-      );
-      localStorage.setItem(
-        "favoriteMovies",
-        JSON.stringify(updatedFavoriteMovies),
-      );
-      setIsMovieInFavorites(false);
+      updatedFavoriteMovies = [...favoriteMovies, imdbID];
     }
-  };
 
-  useEffect(() => {
-    const storedFavoriteMovies = localStorage.getItem("favoriteMovies");
-    const favoriteMovies: string[] = storedFavoriteMovies
-      ? JSON.parse(storedFavoriteMovies)
-      : [];
-    setIsMovieInFavorites(favoriteMovies.includes(imdbID));
-  }, [imdbID]);
+    localStorage.setItem(
+      "favoriteMovies",
+      JSON.stringify(updatedFavoriteMovies),
+    );
+    setFavoriteMovies(updatedFavoriteMovies);
+  };
 
   return (
     <button
