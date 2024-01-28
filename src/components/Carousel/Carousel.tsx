@@ -5,7 +5,7 @@ import { Movies } from "../../utils/getRandomMovies";
 import { CarouselItem } from "./CarouselItem";
 
 const sharedButtonIconStyling =
-  "text-5xl bg-[#6704FF] shadow-md rounded-lg text-[#FAFAFA] w-14 h-14 cursor-pointer";
+  "bg-[#6704FF] cursor-pointer h-14 rounded-lg shadow-md text-5xl text-[#FAFAFA] w-14";
 
 const Carousel = ({ movies }: { movies: Movies[] }) => {
   const carouselRef = useRef<HTMLDivElement | null>(null);
@@ -56,7 +56,7 @@ const Carousel = ({ movies }: { movies: Movies[] }) => {
   return (
     <>
       <div
-        className="flex overflow-y-hidden overflow-x-auto scroll-smooth no-scrollbar  mx-auto mb-8 gap-8 no-scrollbar"
+        className="cards no-scrollbar grid grid-flow-col auto-cols-[100%] gap-x-2.5 list-none overflow-x-scroll scroll-smooth snap-x snap-mandatory mb-6"
         ref={carouselRef}
       >
         {movies.map((movie) => {
@@ -64,14 +64,14 @@ const Carousel = ({ movies }: { movies: Movies[] }) => {
             <Link
               href={`/movie/${movie.imdbID}`}
               key={movie.imdbID}
-              className="relative basis-full flex-grow md:basis-1/2 lg:basis-1/3 xl:basis-1/4 flex-shrink-0 flex justify-center  max-h-[400px] md:max-h-[600px]"
+              className="relative flex snap-center snap-start md:snap-start max-h-[600px] bg-white p-5 rounded-lg shadow transition duration-200"
             >
               <CarouselItem title={movie.Title} poster={movie.Poster} />
             </Link>
           );
         })}
       </div>
-      <nav className="flex justify-center gap-14">
+      <nav className="flex justify-center gap-x-5 md:gap-x-8 xl:gap-x-10">
         <button
           onClick={handleLeftButtonClick}
           disabled={isAtStart}

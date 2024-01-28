@@ -8,18 +8,15 @@ export const CarouselItem = ({
   poster: string;
 }) => {
   return (
-    <div
-      role="group"
-      className="relative group cursor-pointer w-full h-full object-cover"
-    >
+    <div role="group" className="relative w-full h-full cursor-pointer group">
       <img
         src={poster}
         alt={title}
-        className="w-full h-full object-cover transition-transform transform group-hover:scale-105 rounded-2xl"
+        className="object-cover w-full h-full transition-transform transform group-hover:scale-100"
       />
 
-      <div className="p-4 w-full h-full absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-hover:scale-105 bg-[#100118] bg-opacity-80">
-        <p className="text-white text-lg font-bold">{title}</p>
+      <div className="absolute inset-0 flex items-center justify-center p-4 w-full h-full bg-[#100118] bg-opacity-80 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        <p className="text-lg font-bold text-white">{title}</p>
       </div>
     </div>
   );

@@ -7,8 +7,8 @@ export default async function Home() {
     const movies = await fetchRandomMovies();
 
     return (
-      <main className="text-center pt-20 px-4 md:px-8">
-        <h1 className="text-4xl mb-6">Movie carousel</h1>
+      <main className="px-4 pt-20 text-center md:px-8">
+        <h1 className="mb-6 text-4xl">Movie carousel</h1>
         <Carousel movies={movies} />
       </main>
     );

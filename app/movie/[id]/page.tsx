@@ -18,18 +18,21 @@ export default async function Page({ params }: { params: { id: string } }) {
           &lt; Tilbake
         </Link>
         <div className="flex justify-center mt-8">
-          <img className="rounded-lg" src={movie.Poster} alt={movie.Title} />
+          <img src={movie.Poster} alt={movie.Title} className="rounded-lg" />
         </div>
-        <div className="flex-1 md:p-6 mt-8">
+        <div className="flex-1 mt-8 md:p-6">
           <AddFavoriteMovie imdbID={movie.imdbID} />
           <h1 className="text-2xl font-bold">{movie.Title}</h1>
-          <div className="flex  gap-4 mt-4">
+          <div className="flex gap-4 mt-4">
             <p className="text-lg font-bold">{movie.Year}</p>
             <p className="text-lg font-bold">{movie.Runtime}</p>|
             <div className="flex flex-wrap gap-2">
               {genre.map((genre: string) => {
                 return (
-                  <p className="self-start text-md font-medium border-2 rounded-full px-2">
+                  <p
+                    key={genre}
+                    className="self-start px-2 font-medium border-2 rounded-full text-md"
+                  >
                     {genre}
                   </p>
                 );
